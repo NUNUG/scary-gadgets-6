@@ -1,0 +1,16 @@
+Bill of Materials for a Prop Dropper:
+---- ---- ---- ---- ---- ---- ---- ---- 
+1 - Metal gear servo motor, model SG996
+1 - Metal gear continuous rotation servo motor, model SG995
+1 - 4-pin ulrasonic range finder ("ping sensor"), model HC-SR04
+1 - Arduino Uno R3 or Nano.  Others will work but these are the most practical for this project.
+1 - Circuit board or breadboard for wiring.
+1 - 0.1" pin header.  Can be 1x6 or larger.
+Hot glue or epoxy (recommend 5-minute clear Permatex Permapoxy).
+Plastic zip ties / wire ties
+A quantity of hookup wire or breadboard jumper wire.
+A length of CAT-5 or CAT-6 (or any 6-conductor) wire to run between the prop and its controller, if the conroller is remote.  
+  You'll need 6 conductors (Vcc, Grnd, servo signal1, servo signal2, pingTrigger, pingEcho).
+  It's best to use an Arduino Nano and integrate the electronics into the prop so it only needs power. 
+  In that case, you can forego the 6 conductor wire and use a 2-conductor power line.
+3D-printing services (optional)
