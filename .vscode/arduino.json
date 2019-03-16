@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:nano",
+    "configuration": "cpu=atmega328old",
+    "sketch": "Hybrid Jump Scare Robot\\HybridJumpProp.ino",
+    "port": "COM8"
+}

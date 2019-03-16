@@ -1,0 +1,55 @@
+:Author: nzaugg
+:Email: nzaugg@gmail.com
+:Date: 11/10/2018
+:Revision: version#
+:License: Public Domain
+
+= Project: Halloween Jumping Spider -- Raido Receiver
+
+  This project is to activate a pneumatic controlled prop that will jump something out at you.
+  With the use of a radio transmitter / receiver, you can listen to a signal and pop out the prop
+  only when it's appropiate.
+
+Resources:
+- www.instructables.com/id/Arduino-Timer-Interrupts
+- playground.arduino.cc/Main/PinChangeInterrupt
+
+== Circuit Assembly
+
+The A0 pin on the arduino should be connected to a channel on the remote. The remote should be 
+using a switch where on is full left and off is full right.
+
+THIS SECTION NEEDS TO BE REVISED TO WORK WITH THE DARLINGTON PAIR:
+
+The D13 pin should be connected to the Gate of the T1 Triac
+MT2 should be connected to +12-20V DC Power
+MT1 should be connected to the positive lead of the pneumatic actuator
+The other lead on the actuator should be grounded
+
+The Arduino should be connected to the battery supply
+The RC receiver should be connected to power
+
+
+
+== Step 3: Load the code
+
+Upload the code contained in this sketch on to your board
+=== License
+This project is released under a {License} License.
+
+=== Contributing
+To contribute to this project please contact nzaugg <nzaugg@gmail.com>
+
+=== BOM
+Add the bill of the materials you need for this project.
+
+|===
+| ID | Part name      | Part number | Quantity
+| A1 | Arduino Nano   |             | 1        
+| U1 | ULN2003        | ULN2003A    | 1        https://www.jameco.com/Jameco/Products/ProdDS/34278.pdf
+|===
+
+=== Help
+This document is written in the _AsciiDoc_ format, a markup language to describe documents. 
+If you need help you can search the http://www.methods.co.nz/asciidoc[AsciiDoc homepage]
+or consult the http://powerman.name/doc/asciidoc[AsciiDoc cheatsheet]

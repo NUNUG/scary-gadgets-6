@@ -2,22 +2,22 @@
 Halloween Jump Prop
 by: Nate Zaugg
 
+Channel 5 on the Ridio
+
+Documentation: 
+- Look in the readme. There is a bug in the web version of this where URLS get clicked when you click anyplace.
+
+Servo Control:
 Activated / On = 2ms
 Deactivate/ Off = 1ms
 
 Freq = 50 Hz
 20ms between pulses
 
-Channel 5 on the Ridio
-
-Documentation: 
-- Look in the readme. There is a bug in the web version of this where URLS get clicked when you click anyplace.
-
 PIN A0 = Radio Input (Channel 5)
 PIN 13 = Output Trigger
 PIN 12 = Timer debug signal
 
-TODO: Alias these pins with #DEFINE
 */
 
 #define DebugPin 12
