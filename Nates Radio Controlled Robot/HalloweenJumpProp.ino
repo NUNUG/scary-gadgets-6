@@ -20,29 +20,37 @@ PIN 12 = Timer debug signal
 TODO: Alias these pins with #DEFINE
 */
 
+#define DebugPin 12
+#define LedPin 13
+#define ListenPin A0
+
 // Varible used by the interrupts
 // NOTE: This is volatile because it is being used in an interrupt
 volatile int loopValue = 0;
 
+// ******************************************* //
 // Application Setup
+// ******************************************* //
 void setup() 
 {
   // Should be standard practice; just in case our program is funky!
   delay(1000); 
   
   // debug
-  pinMode(12, OUTPUT);
+  pinMode(DebugPin, OUTPUT);
   
-  pinMode(A0, INPUT);   // Listen on A0
-  pinMode(13, OUTPUT);  // LED /Output
-  SetupPinChangeInterrupts(A0);
+  pinMode(ListenPin, INPUT);   // Listen on A0
+  pinMode(LedPin, OUTPUT);  // LED /Output
+  SetupPinChangeInterrupts(ListenPin);
   SetupTimer();
 }
 
+// ******************************************* //
 // Main Loop
+// ******************************************* //
 void loop() 
 {
-    // the goggles, they do nothing
+    // the goggles do nothing
 }
 
 // Setup the timer for 2KHz on TIMER0
@@ -69,14 +77,18 @@ void SetupTimer()
   sei();//resume interrupts
 }
 
+// ******************************************* //
 // TIMER0 Interupt Service Routine
+// ******************************************* //
 ISR(TIMER0_COMPA_vect){  //change the 0 to 1 for timer1 and 2 for timer2
    //interrupt commands here
   ++loopValue;
-  digitalWrite(12, loopValue % 2);
+  digitalWrite(DebugPin, loopValue % 2);
 }
 
+// ******************************************* //
 // Setup Pin Change Interrupts
+// ******************************************* //
 void SetupPinChangeInterrupts(byte pin)
 {
   *digitalPinToPCMSK(pin) |= bit (digitalPinToPCMSKbit(pin));  // enable pin
@@ -84,17 +96,20 @@ void SetupPinChangeInterrupts(byte pin)
   PCICR  |= bit (digitalPinToPCICRbit(pin)); // enable interrupt for the group
 }
 
+// ******************************************* //
 // D8-D13 Pin Change Interrupt Service Routine
+// ******************************************* //
 ISR (PCINT0_vect) // handle pin change interrupt for D8 to D13 here
 {
   
 }
 
+// ******************************************* //
 // A0-A5 Pin Change Interrupt Service Routine
+// ******************************************* //
 ISR (PCINT1_vect) // handle pin change interrupt for A0 to A5 here
 {
-  //digitalWrite(13,digitalRead(A0));
-  byte val = digitalRead(A0);
+  byte val = digitalRead(ListenPin);
   
   // We won't know quite what to do until the pin goes low
   if (val == HIGH)
@@ -106,13 +121,15 @@ ISR (PCINT1_vect) // handle pin change interrupt for A0 to A5 here
   {
     // if we have 3 or more pulses then we know we're more than 1ms
     if (loopValue >= 3)
-      digitalWrite(13, HIGH);
+      digitalWrite(LedPin, HIGH);
     else
-      digitalWrite(13, LOW);
+      digitalWrite(LedPin, LOW);
   }
 }  
 
+// ******************************************* //
 // D0-D7 Pin Change Interrupt Service Routine
+// ******************************************* //
 ISR (PCINT2_vect) // handle pin change interrupt for D0 to D7 here
 {
   
