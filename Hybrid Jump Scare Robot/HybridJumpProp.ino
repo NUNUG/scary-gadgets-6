@@ -21,7 +21,7 @@ PIN A5 = I2C - SCL
 #define EnableToggleInPin 2 // D2
 #define OutPin A1
 #define DebugPin A0 // A0
-#define OutputDebug false
+#define OutputDebug true
 
 // Distance Sensor Constants
 #define CLOCK_SETTING 124
@@ -277,14 +277,16 @@ ISR (PCINT0_vect)
     // Is On?
     if (ManualTriggerLoopValue >= SERVO_WAIT_CYCLES)
     {
-      ManualTriggered = true;
+      //ManualTriggered = true;
+      previousJump = CurrentTime;
+      hasJumped = true;
       Jump(true, "interrupt");
     }
-    else if (ManualTriggered && digitalRead(OutPin))
-    {
-      ManualTriggered = false;
-      Jump(false, "interrupt");
-    }
+    // else if (ManualTriggered && digitalRead(OutPin))
+    // {
+    //   ManualTriggered = false;
+    //   Jump(false, "interrupt");
+    // }
 
   }
 }
